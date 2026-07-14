@@ -181,3 +181,41 @@ padding: 10px 14px; border: none; border-radius: 8px; background: var(--btn-prim
 </div>
 
 <div class="flashcard-grid" id="grid"></div>
+
+    <script
+    src="./App.js"
+    integrity="sha384-xJwS7m9BvOd+HkWruJ/1ER2XViW/SzIrDQS+3eYucHvuckGVVuPdMJi+L6ZewArH"
+    crossorigin="anonymous">
+</script>
+
+<script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    toggleBtn.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        let newTheme = theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const alertBox = document.getElementById('sri-alert');
+            alertBox.style.display = 'block';
+            if (window.flashcardAppLoaded) {
+                alertBox.style.backgroundColor = '#d4edda';
+                alertBox.style.color = '#155724';
+                alertBox.style.border = '1px solid #c3e6cb';
+                alertBox.innerHTML = '✅ Khớp mã SRI: Toàn bộ chức năng từ CDN đã tải an toàn!';
+            } else {
+                alertBox.style.backgroundColor = '#f8d7da';
+                alertBox.style.color = '#721c24';
+                alertBox.style.border = '1px solid #f5c6cb';
+                alertBox.innerHTML = '❌ Lỗi SRI: File CDN bị chỉnh sửa nội dung hoặc sai mã băm! Trình duyệt đã chặn đứng file.';
+            }
+        }, 200);
+    });
+</script>
+</body>
+</html>
