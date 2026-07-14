@@ -33,3 +33,13 @@ function saveData(){
     localStorage.setItem("flashcards", JSON.stringify(words));
     localStorage.setItem("deletedFlashcards", JSON.stringify(deletedWords));
 }
+
+function getFilteredWords(searchTerm) {
+    if (!searchTerm) return words;
+    const val = searchTerm.toLowerCase();
+    return words.filter(w =>
+        w.english.toLowerCase().includes(val) ||
+        w.IPA.toLowerCase().includes(val) ||
+        w.meaning.toLowerCase().includes(val)
+    );
+}
