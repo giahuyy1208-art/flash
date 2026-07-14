@@ -14,3 +14,22 @@ const defaultWords = [
 let savedWords = JSON.parse(localStorage.getItem("flashcards"));
 let deletedWords = JSON.parse(localStorage.getItem("deletedFlashcards")) || [];
 let words = [];
+
+if (!savedWords) {
+    words = [...defaultWords];
+} else {
+    let newWordsFromCode = defaultWords.filter(defWord => {
+        let isAlreadySaved = savedWords.some(saved => saved.english.toLowerCase() === defWord.english.toLowerCase());
+        let isDeleted = deletedWords.includes(defWord.english.toLowerCase());
+        return !isAlreadySaved && !isDeleted;
+    });
+    words = [...savedWords, ...newWordsFromCode];
+}
+
+const grid = document.getElementById("grid");
+const searchInputDom = document.getElementById("searchInput");
+
+function saveData(){
+    localStorage.setItem("flashcards", JSON.stringify(words));
+    localStorage.setItem("deletedFlashcards", JSON.stringify(deletedWords));
+}
