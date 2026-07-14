@@ -1,3 +1,10 @@
+# Thành Viên Nhóm Và Phân Công Công Việc
+Hoàng Ngọc Toàn - Xây dựng bộ khung HTML cơ sở và thiết kế toàn bộ ngôn ngữ định dạng CSS cho ứng dụng Smart Flashcards.
+Nguyễn Đình Gia Huy -  Phụ trách phần quản lý mảng dữ liệu gốc và đồng bộ hóa trạng thái ứng dụng xuống bộ nhớ trình duyệt.
+Nguyễn Tiến Anh - Hoàn thiện các khối nhập liệu chức năng và triển khai cơ chế phòng thủ bảo mật SRI (Subresource Integrity).
+Lê Thanh Quân - Viết bộ lọc tìm kiếm và lập trình hàm sinh thẻ Flashcard động bằng mã JavaScript 
+Vũ Văn Bách - Lập trình chức năng thêm mới từ vựng, tích hợp công nghệ chuyển đổi văn bản thành giọng nói (Web Speech API) và cơ chế Sao lưu/Phục hồi dữ liệu dạng file.
+
 # Hướng Dẫn Demo Bảo Mật: Tấn Công Chuỗi Cung Ứng CDN & Phòng Thủ Bằng SRI (Subresource Integrity)
 
 Tài liệu này hướng dẫn chi tiết từng bước cách thiết lập, giả lập một cuộc tấn công thay đổi nội dung tệp JavaScript trên CDN bằng tính năng **Local Overrides (F12)**, cách trình duyệt chặn đứng mã độc bằng **SRI**, và cách Lập trình viên (Developer) xử lý, cập nhật mã băm khi có phiên bản mới.
