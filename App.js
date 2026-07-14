@@ -140,3 +140,37 @@ window.addWord = function(){
     document.getElementById("newPOS").value = "";
     document.getElementById("newMeaning").value = "";
 }
+
+searchInputDom.addEventListener("input", e => {
+    render(getFilteredWords(e.target.value));
+});
+
+window.exportData = function() {
+    const dataStr = JSON.stringify(words, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url; link.download = "flashcards_backup.json";
+    document.body.appendChild(link); link.click(); document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+window.importData = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const importedWords = JSON.parse(e.target.result);
+            if (Array.isArray(importedWords)) {
+                if(confirm("Ghi đè danh sách hiện tại?")) {
+                    words = importedWords;
+                    deletedWords = defaultWords.map(dw => dw.english.toLowerCase()).filter(defEng => !words.some(w => w.english.toLowerCase() === defEng));
+                    saveData(); searchInputDom.value = ""; render(words); alert("Đã nhập thành công!");
+                }
+            } else { alert("File không đúng định dạng JSON!"); }
+        } catch (err) { alert("Lỗi đọc file: " + err.message); }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+}
