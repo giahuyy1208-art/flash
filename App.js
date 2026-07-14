@@ -43,3 +43,69 @@ function getFilteredWords(searchTerm) {
         w.meaning.toLowerCase().includes(val)
     );
 }
+
+function createCard(data){
+    const container = document.createElement("div");
+    container.className = "flashcard-container";
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = () => card.classList.toggle("flipped");
+
+    const front = document.createElement("div");
+    front.className = "card-face";
+    const englishDiv = document.createElement("div");
+    englishDiv.className = "english-word";
+    englishDiv.textContent = data.english;
+    front.appendChild(englishDiv);
+
+    const speakBtn = document.createElement("button");
+    speakBtn.className = "speak";
+    speakBtn.textContent = "🔊";
+    speakBtn.title = "Phát âm";
+    speakBtn.onclick = (e) => {
+        e.stopPropagation(); 
+        speak(data.english);
+    };
+    front.appendChild(speakBtn);
+
+    const back = document.createElement("div");
+    back.className = "card-face card-back";
+
+    const deleteBtn = document.createElement("div");
+    deleteBtn.className = "delete-x";
+    deleteBtn.title = "Xóa thẻ này";
+    deleteBtn.textContent = "✕";
+    back.appendChild(deleteBtn);
+
+    const ipaDiv = document.createElement("div");
+    ipaDiv.className = "IPA";
+    ipaDiv.textContent = data.IPA;
+    back.appendChild(ipaDiv);
+
+    const posDiv = document.createElement("div");
+    posDiv.className = "pos";
+    posDiv.textContent = data.pos;
+    back.appendChild(posDiv);
+
+    const meaningDiv = document.createElement("div");
+    meaningDiv.className = "meaning";
+    meaningDiv.textContent = data.meaning;
+    back.appendChild(meaningDiv);
+
+    deleteBtn.onclick = (e) => {
+        e.stopPropagation(); 
+        if (!confirm(`Bạn có chắc muốn xóa từ "${data.english}" không?`)) return;
+        if (!deletedWords.includes(data.english.toLowerCase())) {
+            deletedWords.push(data.english.toLowerCase());
+        }
+        words = words.filter(w => w.english.toLowerCase() !== data.english.toLowerCase());
+        saveData();
+        render(getFilteredWords(searchInputDom.value));
+    };
+
+    card.appendChild(front);
+    card.appendChild(back);
+    container.appendChild(card);
+    return container;
+}
