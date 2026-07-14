@@ -109,3 +109,34 @@ function createCard(data){
     container.appendChild(card);
     return container;
 }
+
+
+function render(list){
+    grid.innerHTML = "";
+    if (list.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--text-sub);">Không tìm thấy từ vựng nào.</div>`;
+        return;
+    }
+    list.forEach(w => grid.appendChild(createCard(w)));
+}
+
+window.addWord = function(){
+    const word = document.getElementById("newWord").value.trim();
+    const ipa = document.getElementById("newIPA").value.trim();
+    const pos = document.getElementById("newPOS").value.trim();
+    const meaning = document.getElementById("newMeaning").value.trim();
+
+    if(!word || !meaning) { alert("Vui lòng nhập ít nhất Từ tiếng Anh và Nghĩa!"); return; }
+    if (words.some(w => w.english.toLowerCase() === word.toLowerCase())) { alert("Từ vựng này đã có!"); return; }
+
+    words.unshift({english: word, IPA: ipa, pos: pos, meaning: meaning});
+    deletedWords = deletedWords.filter(dw => dw !== word.toLowerCase());
+    saveData();
+    searchInputDom.value = "";
+    render(words);
+
+    document.getElementById("newWord").value = "";
+    document.getElementById("newIPA").value = "";
+    document.getElementById("newPOS").value = "";
+    document.getElementById("newMeaning").value = "";
+}
