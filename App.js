@@ -174,3 +174,33 @@ window.importData = function(event) {
     reader.readAsText(file);
     event.target.value = '';
 }
+
+let voices = [];
+function loadVoices(){
+    voices = speechSynthesis.getVoices();
+    const select = document.getElementById("voiceSelect");
+    const currentSelectedURI = select.options[select.selectedIndex]?.dataset?.uri;
+    select.innerHTML = "";
+    let englishVoiceIndex = 0;
+    voices.forEach((v, i) => {
+        const opt = document.createElement("option");
+        opt.value = i; opt.dataset.uri = v.voiceURI; opt.text = v.name + " (" + v.lang + ")";
+        select.appendChild(opt);
+        if (v.lang.includes('en-US') || v.lang.includes('en-GB')) {
+            if(!currentSelectedURI || v.voiceURI === currentSelectedURI) englishVoiceIndex = i;
+        }
+    });
+    if(voices.length > 0) select.selectedIndex = englishVoiceIndex;
+}
+speechSynthesis.onvoiceschanged = loadVoices;
+setTimeout(loadVoices, 100);
+
+function speak(text){
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    const voiceIndex = document.getElementById("voiceSelect").value;
+    if(voices[voiceIndex]) utter.voice = voices[voiceIndex];
+    speechSynthesis.speak(utter);
+}
+
+render(words);
