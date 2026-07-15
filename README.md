@@ -89,6 +89,7 @@ Bây giờ, chúng ta kích hoạt người gác cổng SRI để xem cách trì
 
 ### Kết quả thu được:
 <img width="915" height="729" alt="image" src="https://github.com/user-attachments/assets/4e5ffc6b-87c2-4f3a-906f-30264f3c5102" />
+
 - Hộp thoại `alert()` độc hại của hacker **hoàn toàn bị vô hiệu hóa** (không thể hiện lên).
 - Giao diện ứng dụng lập tức chuyển sang trạng thái **MÀU ĐỎ rực cảnh báo nguy hiểm**: _"❌ Lỗi SRI: File CDN bị chỉnh sửa nội dung hoặc sai mã băm! Trình duyệt đã chặn hoàn toàn file này để bảo vệ bạn."_
 - Mở tab **Console** của F12 lên, bạn sẽ thấy một dòng lỗi hệ thống màu đỏ nghiêm trọng:
