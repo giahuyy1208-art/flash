@@ -5,9 +5,21 @@
 - **`Lê Thanh Quân`** - Viết bộ lọc tìm kiếm và lập trình hàm sinh thẻ Flashcard động bằng mã JavaScript 
 - **`Vũ Văn Bách`** - Lập trình chức năng thêm mới từ vựng, tích hợp công nghệ chuyển đổi văn bản thành giọng nói (Web Speech API) và cơ chế Sao lưu/Phục hồi dữ liệu dạng file.
 
+---
+
 # Hướng Dẫn Demo Bảo Mật: Tấn Công Chuỗi Cung Ứng CDN & Phòng Thủ Bằng SRI (Subresource Integrity)
 
 Tài liệu này hướng dẫn chi tiết từng bước cách thiết lập, giả lập một cuộc tấn công thay đổi nội dung tệp JavaScript trên CDN bằng tính năng **Local Overrides (F12)**, cách trình duyệt chặn đứng mã độc bằng **SRI**, và cách Lập trình viên (Developer) xử lý, cập nhật mã băm khi có phiên bản mới.
+
+---
+
+# Giới Thiệu Đề Tài
+Trong kiến trúc web hiện đại, việc sử dụng mạng phân phối nội dung (CDN) bên thứ ba giúp tối ưu hóa hiệu suất nhưng lại vô tình mở ra lỗ hổng nghiêm trọng về tấn công chuỗi cung ứng phần mềm. Tin tặc có thể hoán đổi hoặc chèn mã độc vào các tệp tin CDN để đánh cắp dữ liệu nhạy cảm của người dùng. Subresource Integrity (SRI) ra đời như một lá chắn bắt buộc, giúp trình duyệt đối chiếu mã băm mật mã học để chặn đứng các tài nguyên bị chỉnh sửa trái phép. Ý thức được tầm quan trọng đó, tôi quyết định chọn nghiên cứu cơ chế SRI và các biện pháp bảo mật web làm đề tài báo cáo nhằm giải quyết triệt để nguy cơ tấn công này.
+
+## Mục tiêu nghiên cứu
+- **`Nghiên cứu lý thuyết`**: Làm rõ cơ chế vận hành của SRI và quy trình trình duyệt xác thực tính toàn vẹn dữ liệu thông qua các hàm băm mật mã học (SHA-384).
+- **`Triển khai thực nghiệm`**: Xây dựng kịch bản giả lập tấn công thay đổi nội dung trên CDN để kiểm chứng trực quan khả năng phòng thủ của SRI trong môi trường thực tế.
+- **`Đề xuất giải pháp`**: Xây dựng quy trình cập nhật mã băm hợp pháp cho nhà phát triển và đề xuất các biện pháp bổ sung để nâng cao tính an toàn tổng thể cho ứng dụng web.
 
 ---
 
