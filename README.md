@@ -62,6 +62,7 @@ Kịch bản này xảy ra khi Lập trình viên chủ quan, gọi file từ CD
 5.  Quay lại trình duyệt và bấm **F5** để tải lại trang.
 
 ### Kết quả thu được:
+<img width="915" height="663" alt="image" src="https://github.com/user-attachments/assets/2faa85b7-bd68-4a12-b63f-9a6cef40cb2b" />
 
 - Một hộp thoại thông báo **` HACKED! Mã độc từ Hacker...`** lập tức bật nhảy lên màn hình.
 - Sau khi bấm **OK**, trang web vẫn tải bình thường và hiển thị giao diện **MÀU XANH**.
@@ -87,12 +88,13 @@ Bây giờ, chúng ta kích hoạt người gác cổng SRI để xem cách trì
 3.  Lưu file và quay lại trình duyệt bấm **F5**.
 
 ### Kết quả thu được:
-
+<img width="915" height="729" alt="image" src="https://github.com/user-attachments/assets/4e5ffc6b-87c2-4f3a-906f-30264f3c5102" />
 - Hộp thoại `alert()` độc hại của hacker **hoàn toàn bị vô hiệu hóa** (không thể hiện lên).
 - Giao diện ứng dụng lập tức chuyển sang trạng thái **MÀU ĐỎ rực cảnh báo nguy hiểm**: _"❌ Lỗi SRI: File CDN bị chỉnh sửa nội dung hoặc sai mã băm! Trình duyệt đã chặn hoàn toàn file này để bảo vệ bạn."_
 - Mở tab **Console** của F12 lên, bạn sẽ thấy một dòng lỗi hệ thống màu đỏ nghiêm trọng:
   > `Failed to find a valid digest in the 'integrity' attribute for resource '...App.js' with computed SHA-384 integrity 'R3fXEfFGMmNmD++Vxi...'. The resource has been blocked.`
 - ** Đánh giá an ninh:** Trình duyệt đã quét qua tệp nhiễm độc, tự tính toán ra mã băm thực tế (`R3fXEf...`) và đối chiếu với mã băm sạch trong HTML (`xJwS7m9B...`). Thấy hai chuỗi khác nhau, nó lập tức **Block (Chặn đứng)** toàn bộ tệp tin, bảo vệ người dùng tuyệt đối khỏi mã độc.
+
 
 ---
 
@@ -105,8 +107,11 @@ Trong thực tế, khi Lập trình viên chủ động cập nhật các tính 
 1.  Giữ nguyên tệp `App.js` phiên bản mới (ở đây là bản có chứa mã độc/tính năng mới).
 2.  Vào tab **Console** của trình duyệt, tìm đến dòng lỗi đỏ quét tìm đoạn mã băm thực tế mà trình duyệt đã tính toán sẵn ở mục: `computed SHA-384 integrity '...'`.
 3.  Bôi đen và **Copy** chuỗi mã hóa nằm bên trong dấu nháy đơn đó. Ví dụ: `R3fXEfFGMmNmD++VxiI8k/1hPPST1NDwTg/jkwALYr1ncZWFG1IFjKvh6tAvZAm3`.
-4.  Mở file `testSRI.html` bằng VS Code.
-5.  Tìm đến thuộc tính `integrity="sha384-[MÃ_BĂM_CŨ]"` và thay thế phần mã băm cũ bằng mã băm mới vừa copy.
+
+<img width="916" height="515" alt="image" src="https://github.com/user-attachments/assets/e7cde4ac-0dcd-4e35-8e32-a8f14e975821" />
+
+5.  Mở file `testSRI.html` bằng VS Code.
+6.  Tìm đến thuộc tính `integrity="sha384-[MÃ_BĂM_CŨ]"` và thay thế phần mã băm cũ bằng mã băm mới vừa copy.
     _(Lưu ý: Giữ nguyên tiền tố `sha384-` ở phía trước)_.
     ```html
     <script
@@ -115,7 +120,12 @@ Trong thực tế, khi Lập trình viên chủ động cập nhật các tính 
       crossorigin="anonymous"
     ></script>
     ```
-6.  Lưu file HTML lại và bấm **F5** trên trình duyệt.
+    
+<img width="916" height="638" alt="image" src="https://github.com/user-attachments/assets/0afd4812-5004-4c60-99a9-d8c4255d2961" />
+
+7.  Lưu file HTML lại và bấm **F5** trên trình duyệt.
+
+
 
 ### Kết quả sau khi Fix:
 
